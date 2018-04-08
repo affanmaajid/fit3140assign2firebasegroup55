@@ -47,3 +47,64 @@ var visitors = 0;
     });
   };
 
+
+  Fit3140.prototype.displayMessage = function (action, count, id, type,) {
+    //document.getElementById('playNotifh5').innerText = action + '  ' + type;
+      if (action === 'L'){
+          document.getElementById('clickTwo').innerText = count;
+
+
+      }
+      else {
+          document.getElementById('clickFive').innerText = count;
+
+      }
+
+  };
+
+
+  Fit3140.prototype.checkLength = function (motionArray) {
+    if(motionArray.length > 3){
+        this.detectVisitor(motionArray);
+
+    }
+  }
+
+  Fit3140.prototype.detectVisitor = function (motionArray) {
+    var stringVar = '';
+    for (var i = iPointer; i < motionArray.length; i++){
+      stringVar += motionArray[i];
+
+    }
+
+    if (stringVar === goal){
+      visitors += 1;
+      iPointer += 1;
+      document.getElementById('clickEight').innerText = visitors;
+
+
+    }
+    else {
+      iPointer += 1;
+    }
+
+
+
+
+  }
+
+
+  // Checks that the Firebase SDK has been correctly setup and configured.
+  Fit3140.prototype.checkSetup = function () {
+    if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
+      window.alert('You have not configured and imported the Firebase SDK. ' +
+        'Make sure you go through the codelab setup instructions.');
+    } else if (config.storageBucket === '') {
+      window.alert('Your Firebase Storage bucket has not been enabled.');
+    }
+  };
+
+
+window.onload = function () {
+  window.Fit3140 = new Fit3140();
+};
