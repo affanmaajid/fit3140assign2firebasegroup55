@@ -129,3 +129,159 @@ io.on('connection', function(socket){
 server.listen(5000, function() {
     console.log("Listening on port 5000");
 });
+
+
+
+/*
+function lightOff() {
+    b.digitalWrite(led, 0);
+    personTwo = false;
+
+
+}
+
+
+function simPersonDetected() {
+    if (personTwo){
+        setTimeout(lightOff, 5000);
+
+    }
+    else {
+        setTimeout(lightOff, 100);
+    }
+
+
+}
+
+
+function personDetected() {
+    b.digitalWrite(led, 1);
+    setTimeout(simPersonDetected, 18000);
+
+}
+
+function checkPIR(){
+    if (sensorRead) {
+        b.digitalRead('P8_19', printStatus);
+    }
+    else {
+        b.digitalRead('P9_14', printStatus);
+    }
+
+}
+
+function identifyLength(motions) {
+    if(motions > 3) {
+        longCount += 1;
+        msgCount += 1;
+        ref.push({
+            id:msgCount,
+            type:'motion',
+            action:'L',
+            count:longCount
+        });
+
+
+
+    }
+    else {
+        shortCount += 1;
+        msgCount += 1;
+        ref.push({
+            id:msgCount,
+            type:'motion',
+            action:'S',
+            count:shortCount
+        });
+    }
+
+}
+
+function printStatus(x){
+    if(x.value === 1){
+        if (firstZeroes) {
+            zeroesSeen += 1; //to ignore all non motions before the first motion
+        }
+        else {
+            identifyLength(detect); //identify long or short message
+            detect = 0;
+
+        }
+
+    }
+    else {
+        firstZeroes = false; //check if we have seen a motion
+        detect += 1;   //count number of motions
+    }
+    }
+
+
+setInterval(checkPIR, 1000);
+*/
+var c = 0;
+function pushToDb(){
+
+
+    ref.push({
+        id:1,
+        type:'motion',
+        action:'L',
+        count:1
+    });
+
+
+    ref.push({
+        id:2,
+        type:'motion',
+        action:'S',
+        count:1
+    });
+
+
+    ref.push({
+        id:3,
+        type:'motion',
+        action:'S',
+        count:2
+    });
+
+
+    ref.push({
+        id:4,
+        type:'motion',
+        action:'L',
+        count:2
+    });
+
+
+    ref.push({
+        id:5,
+        type:'motion',
+        action:'S',
+        count:3
+    });
+
+    ref.push({
+        id:6,
+        type:'motion',
+        action:'L',
+        count:3
+    });
+
+    ref.push({
+        id:7,
+        type:'motion',
+        action:'L',
+        count:4
+    });
+
+
+
+
+
+}
+
+
+pushToDb();
+
+//setInterval(pushToDb, 3000);
